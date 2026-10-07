@@ -8,7 +8,7 @@ body {
   background: white;
 }
 
-/* MENU PRINCIPAL */
+/* MENU */
 
 .menu {
   min-height: 100vh;
@@ -42,7 +42,7 @@ body {
   background-color: #212529;
 }
 
-/* BOTON VOLVER */
+
 
 .back-button {
   margin: 20px;
@@ -50,7 +50,7 @@ body {
   cursor: pointer;
 }
 
-/* RETO 1 */
+
 
 h1 {
   text-align: center;
@@ -127,7 +127,7 @@ h1 {
   flex-direction: row-reverse;
 }
 
-/* RETO 3 */
+
 
 .reto3-container {
   padding: 40px 80px;
@@ -168,4 +168,50 @@ h1 {
 .result li {
   font-size: 18px;
   margin-bottom: 5px;
+}
+
+
+
+.timer-container {
+  width: 500px;
+  margin: 80px auto;
+}
+
+.timer-container h1 {
+  text-align: left;
+  font-family: Georgia, serif;
+  font-size: 54px;
+  margin-bottom: 35px;
+}
+
+.timer-display {
+  font-family: Georgia, serif;
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.timer-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.timer-buttons button {
+  width: 120px;
+  padding: 18px 10px;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.start-button {
+  background-color: #9aaa43;
+}
+
+.stop-button {
+  background-color: #e79a62;
+}
+
+.reset-button {
+  background-color: #e5d843;
 }

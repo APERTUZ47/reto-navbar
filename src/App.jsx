@@ -1,10 +1,10 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Navbar from "./components/Navbar"
 
-function Reto1() {
+function Reto1({ onBack }) {
   return (
     <>
-      <button className="back-button" onClick={() => window.location.reload()}>
+      <button className="back-button" onClick={onBack}>
         Volver
       </button>
 
@@ -19,7 +19,7 @@ function Reto1() {
   )
 }
 
-function Reto3() {
+function Reto3({ onBack }) {
   const [username, setUsername] = useState("")
   const [fullName, setFullName] = useState("")
   const [age, setAge] = useState("")
@@ -45,7 +45,7 @@ function Reto3() {
 
   return (
     <>
-      <button className="back-button" onClick={() => window.location.reload()}>
+      <button className="back-button" onClick={onBack}>
         Volver
       </button>
 
@@ -94,15 +94,81 @@ function Reto3() {
   )
 }
 
+function Reto4({ onBack }) {
+  const [seconds, setSeconds] = useState(0)
+  const [running, setRunning] = useState(false)
+
+  useEffect(() => {
+    if (!running) return
+
+    const interval = setInterval(() => {
+      setSeconds((current) => current + 1)
+    }, 1000)
+
+    return () => clearInterval(interval)
+  }, [running])
+
+  const minutes = Math.floor(seconds / 60)
+  const remainingSeconds = seconds % 60
+
+  const resetTimer = () => {
+    setRunning(false)
+    setSeconds(0)
+  }
+
+  return (
+    <>
+      <button className="back-button" onClick={onBack}>
+        Volver
+      </button>
+
+      <div className="timer-container">
+        <h1>Timer</h1>
+
+        <div className="timer-display">
+          {minutes} mins {remainingSeconds} secs
+        </div>
+
+        <div className="timer-buttons">
+          <button
+            className="start-button"
+            onClick={() => setRunning(true)}
+          >
+            Start
+          </button>
+
+          <button
+            className="stop-button"
+            onClick={() => setRunning(false)}
+          >
+            Stop
+          </button>
+
+          <button
+            className="reset-button"
+            onClick={resetTimer}
+          >
+            Reset
+          </button>
+        </div>
+      </div>
+    </>
+  )
+}
+
 function App() {
   const [reto, setReto] = useState(null)
 
   if (reto === 1) {
-    return <Reto1 />
+    return <Reto1 onBack={() => setReto(null)} />
   }
 
   if (reto === 3) {
-    return <Reto3 />
+    return <Reto3 onBack={() => setReto(null)} />
+  }
+
+  if (reto === 4) {
+    return <Reto4 onBack={() => setReto(null)} />
   }
 
   return (
@@ -116,6 +182,10 @@ function App() {
 
         <button onClick={() => setReto(3)}>
           Reto 3
+        </button>
+
+        <button onClick={() => setReto(4)}>
+          Reto 4
         </button>
       </div>
     </div>
