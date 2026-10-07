@@ -19,6 +19,52 @@ function Reto1({ onBack }) {
   )
 }
 
+function Reto2({ onBack }) {
+  const [percentage, setPercentage] = useState(10)
+
+  const handleChange = (event) => {
+    let value = Number(event.target.value)
+
+    if (value < 0) value = 0
+    if (value > 100) value = 100
+
+    setPercentage(value)
+  }
+
+  return (
+    <>
+      <button className="back-button" onClick={onBack}>
+        Volver
+      </button>
+
+      <div className="progress-container">
+        <h1>Progress bar</h1>
+
+        <div className="progress-track">
+          <div
+            className="progress-fill"
+            style={{ width: `${percentage}%` }}
+          >
+            <span>{percentage}%</span>
+          </div>
+        </div>
+
+        <div className="progress-input">
+          <label>Input Percentage:</label>
+
+          <input
+            type="number"
+            min="0"
+            max="100"
+            value={percentage}
+            onChange={handleChange}
+          />
+        </div>
+      </div>
+    </>
+  )
+}
+
 function Reto3({ onBack }) {
   const [username, setUsername] = useState("")
   const [fullName, setFullName] = useState("")
@@ -163,6 +209,10 @@ function App() {
     return <Reto1 onBack={() => setReto(null)} />
   }
 
+  if (reto === 2) {
+    return <Reto2 onBack={() => setReto(null)} />
+  }
+
   if (reto === 3) {
     return <Reto3 onBack={() => setReto(null)} />
   }
@@ -176,17 +226,10 @@ function App() {
       <h1>Selecciona un reto</h1>
 
       <div className="menu-buttons">
-        <button onClick={() => setReto(1)}>
-          Reto 1
-        </button>
-
-        <button onClick={() => setReto(3)}>
-          Reto 3
-        </button>
-
-        <button onClick={() => setReto(4)}>
-          Reto 4
-        </button>
+        <button onClick={() => setReto(1)}>Reto 1</button>
+        <button onClick={() => setReto(2)}>Reto 2</button>
+        <button onClick={() => setReto(3)}>Reto 3</button>
+        <button onClick={() => setReto(4)}>Reto 4</button>
       </div>
     </div>
   )
